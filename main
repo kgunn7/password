@@ -1,0 +1,37 @@
+import random
+import string
+
+def generate_password(length, complexity):
+    if complexity == '1':
+        characters = string.ascii_letters
+    elif complexity == '2':
+        characters = string.ascii_letters + string.digits
+    elif complexity == '3':
+        characters = string.ascii_letters + string.digits + string.punctuation
+    else:
+        print("无效的复杂性选择。")
+        return None
+    
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+print("密码生成器命令行应用程序")
+
+while True:
+    print("\n请选择密码复杂性：")
+    print("1. 仅字母")
+    print("2. 字母和数字")
+    print("3. 字母、数字和特殊字符")
+    print("4. 退出程序")
+    
+    complexity = input("请输入复杂性选择（输入数字）：")
+    
+    if complexity == '4':
+        print("谢谢使用，再见！")
+        break
+    
+    length = int(input("请输入密码长度："))
+    
+    password = generate_password(length, complexity)
+    if password:
+        print("生成的密码为：", password)
